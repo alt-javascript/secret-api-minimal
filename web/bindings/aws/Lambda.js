@@ -37,7 +37,7 @@ export default class Lambda {
                     break;
 
                 case `GET ${this.context}guess/{secret}`:
-                    this.logger?.info(`GET ${this.context}`, event.body);
+                    this.logger?.info(`GET ${this.context}guess/{secret}`, event.body);
                     // JSON.parse(event.body);
 
                     let result = this.secret.guess(event.pathParameters.secret);
