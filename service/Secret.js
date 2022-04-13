@@ -9,7 +9,7 @@ export default class Secret {
     guess (secret){
         this.logger?.verbose(`Guessing the secret`);
         let result = false
-        if (this.secret === secret){
+        if (this.secret === `${secret}`){
             result = true
         }
         this.logger?.verbose(`Guess was: ${result}`);
