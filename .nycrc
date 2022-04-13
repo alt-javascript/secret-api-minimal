@@ -1,0 +1,19 @@
+{
+  "cache": false,
+  "check-coverage": true,
+  "lines": 88,
+  "statements": 88,
+  "functions": 65,
+  "branches": 70,
+  "reporter": [
+    "html",
+    "text",
+    "text-summary"
+  ],
+  "all": true,
+  "instrument": true,
+    "exclude": [
+      "dist/**/*.js",
+      "coverage/**/*"
+    ]
+}

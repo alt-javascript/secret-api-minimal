@@ -1,0 +1,11 @@
+{
+  "secret" : "enc.l4NF8xcalSfCFvtJDsUWGQ==",
+  "logging": {
+    "format": "json",
+    "level": {
+      "/": "info",
+      "@alt-javascript/secret-api-minimal" : "verbose"
+    }
+  }
+}
+

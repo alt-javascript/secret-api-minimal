@@ -1,0 +1,18 @@
+{
+  "server" : {
+      "port": 8081
+    },
+  "secret" : "enc.EKXDVkp5P6T5+lys8NWPOw==",
+  "logging" : {
+    "format" : "text",
+    "level": {
+      "/" : "verbose",
+      "@alt-javascript/cdi" : "verbose"
+    },
+    "test" : {
+      "fixtures" : {
+        "quiet" : false
+      }
+    }
+  }
+}
