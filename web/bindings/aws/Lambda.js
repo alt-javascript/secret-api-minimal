@@ -36,7 +36,7 @@ export default class Lambda {
                     statusCode = 200;
                     break;
 
-                case `GET ${this.context}/guess/{secret}`:
+                case `GET ${this.context}guess/{secret}`:
                     this.logger?.info(`GET ${this.context}`, event.body);
                     // JSON.parse(event.body);
 

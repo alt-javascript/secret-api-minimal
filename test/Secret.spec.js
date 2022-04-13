@@ -2,7 +2,7 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { LoggerFactory } from '@alt-javascript/logger';
-import RandomNumber from '../service/RandomNumber.js';
+import Secret from '../service/Secret.js';
 
 const logger = LoggerFactory.getLogger('@alt-javascript/secret-api-minimal/test/RandomNumber_spec');
 const { assert } = chai;
@@ -32,16 +32,17 @@ beforeEach(async () => {
   logger.verbose('before each setup completed');
 });
 
-describe('RandomNumber Specification', () => {
-  it('Generates a random number between 1 and zero', () => {
-    const randomNumber = new RandomNumber({
-      maximum: 1,
-      logger: LoggerFactory.getLogger(RandomNumber.qualifier),
+describe('Secret Specification', () => {
+  it('Matches a guessed secret', () => {
+    const secret = new Secret({
+      secret: 'value',
+      logger: LoggerFactory.getLogger(Secret.qualifier),
     });
 
-    const random = randomNumber.get();
+    const result = secret.guess('value');
+    const result2 = secret.guess('sdfsdfsdf');
 
-    assert.isAtLeast(random, 0, 'Random Number is at least 0');
-    assert.isAtMost(random, 1, 'Random Number is at most 1');
+    assert.isTrue(result, 'guess result is true');
+    assert.isFalse(result2, 'guess result2 is false');
   });
 });

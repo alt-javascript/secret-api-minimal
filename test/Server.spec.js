@@ -6,7 +6,7 @@ import request from 'supertest';
 import express from 'express';
 
 import { LoggerFactory } from '@alt-javascript/logger';
-import RandomNumber from '../service/RandomNumber.js';
+import Secret from '../service/Secret.js';
 import Server from '../web/bindings/express/Server.js';
 
 const logger = LoggerFactory.getLogger('@alt-javascript/secret-api-minimal/test/Server_spec');
@@ -38,32 +38,31 @@ beforeEach(async () => {
 });
 
 describe('Server Specification', () => {
-  it('Generates a random number between 1 and zero', (done) => {
+  it('Matches a guessed secret', (done) => {
     const server = new Server(
       {
         logger: LoggerFactory.getLogger(Server.qualifier),
         app: express(),
         router: express.Router(),
         context: '/',
-        randomNumber: new RandomNumber({
-          maximum: 1,
-          logger: LoggerFactory.getLogger(RandomNumber.qualifier),
+        secret: new Secret({
+          secret: 'value',
+          logger: LoggerFactory.getLogger(Secret.qualifier),
         }),
       },
     );
     server.init();
 
     request(server.app)
-      .get('/')
+      .get('/guess/value')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
         const code = res.statusCode;
-        const random = res.body;
+        const result = res.body;
         assert.equal(code, 200, 'GET response code is 200');
-        assert.isAtLeast(random, 0, 'Random Number is at least 0');
-        assert.isAtMost(random, 1, 'Random Number is at most 1');
+        assert.isTrue(result, 0, 'Result is true');
         return done();
       })
       .catch((err) => done(err));
